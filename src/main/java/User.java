@@ -6,12 +6,6 @@ public class User
     private String uName;
     private String pWord;
     
-    //Constructor
-    public User(String uName, String pWord) {
-        this.uName = uName;
-        this.pWord = pWord;
-    }
-    
     //Properties
     ///uName
     public String getuName() {

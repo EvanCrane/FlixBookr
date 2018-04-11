@@ -10,14 +10,6 @@ public class Reservation
     private Double amount;
     private Movie movie;
     
-    //Constructor
-    public Reservation(LocalDateTime resTime, Double price, Double amount, Movie movie) {
-        this.resTime = resTime;
-        this.price = price;
-        this.amount = amount;
-        this.movie = movie;
-    }
-    
     //Properties
     ///Time
     public LocalDateTime getResTime() {

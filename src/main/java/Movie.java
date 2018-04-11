@@ -12,18 +12,6 @@ public class Movie
     private Byte[] promoImage;
     private String description;
 
-    //Constructor
-    public Movie(String title, String rating, LocalDateTime startTime, LocalDateTime endTime,
-                 LocalDateTime[] showTimes, Byte[] promoImage, String description) {
-        this.title = title;
-        this.rating = rating;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.showTimes = showTimes;
-        this.promoImage = promoImage;
-        this.description = description;
-    }
-
     //Properties
     ///Title
     public String getTitle() {
