@@ -9,6 +9,7 @@ public class Reservation
     private Double price;
     private Double amount;
     private Movie movie;
+    private User user;
     
     //Properties
     ///Time
@@ -45,5 +46,14 @@ public class Reservation
     
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+    
+    //User
+    public User getUser() {
+        return this.user;
+    }
+    
+    public void setUser(User user) {
+        this.user = user;
     }
 }
