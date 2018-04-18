@@ -7,7 +7,7 @@ public class Reservation
     //Instance Variables
     private LocalDateTime resTime;
     private Double price;
-    private Double amount;
+    private Integer amount;
     private Movie movie;
     private User user;
     
@@ -31,11 +31,11 @@ public class Reservation
     }
     
     ///Amount
-    public Double getAmount() {
+    public Integer getAmount() {
         return this.amount;
     }
     
-    public void setAmount(Double amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
     

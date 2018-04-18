@@ -9,7 +9,7 @@ public class Movie
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private LocalDateTime[] showTimes;
-    private Byte[] promoImage;
+    private String promoImage;
     private String description;
 
     //Properties
@@ -59,11 +59,11 @@ public class Movie
     }
 
     ///PromoImage
-    public Byte[] getPromoImage() {
+    public String getPromoImage() {
         return this.promoImage;
     }
 
-    public void setPromoImage(Byte[] promoImage) {
+    public void setPromoImage(String promoImage) {
         this.promoImage = promoImage;
     }
 
