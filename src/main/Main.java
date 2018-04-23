@@ -8,16 +8,16 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("flixBookr.fxml"));
-        primaryStage.setTitle("FlixBookr");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
-    }
-
-
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("flixBookr.fxml"));
+        //Start stage setting for login screen.
+        primaryStage.setTitle("FlixBookr Welcome");
+        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.show();
     }
 }

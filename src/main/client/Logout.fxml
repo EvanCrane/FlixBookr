@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-color: #564256;" xmlns="http://javafx.com/javafx/9">
+    <children>
+        <AnchorPane layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="500.0"
+                    style="-fx-background-color: #e8e8e8;">
+            <children>
+                <Label layoutX="216.0" layoutY="85.0" text="Logout">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="97.0" layoutY="132.0" text="Are you sure that you want like to log out?">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+                <Button layoutX="108.0" layoutY="213.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0"
+                        text="Logout"/>
+                <Button layoutX="273.0" layoutY="213.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0"
+                        text="Cancel"/>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

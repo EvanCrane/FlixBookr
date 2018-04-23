@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="1200.0"
+            style="-fx-background-color: #BFBFBF;" xmlns="http://javafx.com/javafx/9">
+    <children>
+        <GridPane layoutX="12.0" layoutY="59.0" prefHeight="300.0" prefWidth="577.0"
+                  style="-fx-background-color: E8E8E8;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0"
+                  AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="254.0" minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="439.0" minHeight="10.0" prefHeight="221.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="101.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <children>
+                <AnchorPane prefHeight="230.0" prefWidth="583.0">
+                    <children>
+                        <Label layoutX="57.0" layoutY="39.0" text="Movie Title" AnchorPane.leftAnchor="50.0"
+                               AnchorPane.topAnchor="50.0"/>
+                        <Label layoutX="78.0" layoutY="102.0" text="Rating" AnchorPane.leftAnchor="78.0"/>
+                        <TextField layoutX="131.0" layoutY="45.0" prefHeight="26.0" prefWidth="300.0"
+                                   promptText="Enter Title" AnchorPane.leftAnchor="131.0" AnchorPane.topAnchor="45.0"/>
+                        <ChoiceBox layoutX="131.0" layoutY="95.0" prefHeight="26.0" prefWidth="100.0"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                    <children>
+                        <Label layoutX="14.0" layoutY="53.0" text="Movie Location" AnchorPane.topAnchor="50.0"/>
+                        <ComboBox layoutX="122.0" layoutY="45.0" prefHeight="26.0" prefWidth="300.0"/>
+                        <Label layoutX="28.0" layoutY="100.0" text="Movie Image" AnchorPane.topAnchor="100.0"/>
+                        <Button layoutX="122.0" layoutY="95.0" mnemonicParsing="false" prefHeight="26.0"
+                                prefWidth="148.0" text="Choose FIle"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                    <children>
+                        <Label layoutX="54.0" layoutY="76.0" text="Start Date"/>
+                        <Label layoutX="58.0" layoutY="133.0" text="End Date"/>
+                        <Label layoutX="239.0" layoutY="26.0" text="Date Range">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <DatePicker layoutX="148.0" layoutY="71.0" prefHeight="26.0" prefWidth="160.0"
+                                    promptText="Select Date"/>
+                        <DatePicker layoutX="148.0" layoutY="128.0" prefHeight="26.0" prefWidth="160.0"
+                                    promptText="Select Date"/>
+                        <Label layoutX="409.0" layoutY="55.0" text="Showtimes"/>
+                        <ComboBox layoutX="346.0" layoutY="84.0" prefHeight="73.0" prefWidth="198.0"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <Label layoutX="41.0" layoutY="72.0" text="Description" AnchorPane.leftAnchor="41.0"
+                               AnchorPane.topAnchor="50.0"/>
+                        <TextArea layoutX="144.0" layoutY="42.0" prefHeight="150.0" prefWidth="400.0"
+                                  promptText="Enter Description" AnchorPane.leftAnchor="144.0"
+                                  AnchorPane.topAnchor="50.0"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                    <children>
+                        <Label layoutX="233.0" layoutY="4.0" text="Price Options" AnchorPane.topAnchor="5.0">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="42.0" prefHeight="16.0" prefWidth="96.0" text="Matinee Price"
+                               AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="42.0"/>
+                        <Label layoutX="317.0" layoutY="41.0" text="Standard Price" AnchorPane.rightAnchor="172.0"
+                               AnchorPane.topAnchor="42.0"/>
+                        <TextField alignment="CENTER_RIGHT" layoutX="145.0" layoutY="38.0" prefHeight="26.0"
+                                   prefWidth="40.0" promptText="00" AnchorPane.leftAnchor="145.0"
+                                   AnchorPane.topAnchor="38.0"/>
+                        <Label layoutX="126.0" layoutY="38.0" text="\$" AnchorPane.leftAnchor="126.0"
+                               AnchorPane.topAnchor="40.0">
+                            <font>
+                                <Font name="System Bold" size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="185.0" layoutY="37.0" text="." AnchorPane.leftAnchor="185.0"
+                               AnchorPane.topAnchor="37.0">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField layoutX="191.0" layoutY="38.0" prefHeight="26.0" prefWidth="40.0" promptText="00"
+                                   AnchorPane.leftAnchor="191.0" AnchorPane.topAnchor="38.0"/>
+                        <TextField alignment="CENTER_RIGHT" layoutX="437.0" layoutY="38.0" prefHeight="26.0"
+                                   prefWidth="40.0" promptText="00" AnchorPane.rightAnchor="108.0"
+                                   AnchorPane.topAnchor="38.0"/>
+                        <Label layoutX="417.0" layoutY="39.0" text="\$" AnchorPane.rightAnchor="155.0"
+                               AnchorPane.topAnchor="39.0">
+                            <font>
+                                <Font name="System Bold" size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField layoutX="483.0" layoutY="37.0" prefHeight="26.0" prefWidth="40.0" promptText="00"
+                                   AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="38.0"/>
+                        <Label layoutX="477.0" layoutY="37.0" text="." AnchorPane.rightAnchor="102.0"
+                               AnchorPane.topAnchor="37.0">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            </children>
+        </GridPane>
+        <Label layoutX="501.0" layoutY="14.0" prefHeight="30.0" prefWidth="198.0" text="Schedule Movie"
+               AnchorPane.leftAnchor="501.0" AnchorPane.rightAnchor="501.0" AnchorPane.topAnchor="14.0">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <Button layoutX="301.0" layoutY="855.0" mnemonicParsing="false" text="Schedule Movie"
+                AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="400.0"/>
+        <Button layoutX="884.0" layoutY="854.0" mnemonicParsing="false" text="Cancel Changes"
+                AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="400.0"/>
+        <Separator layoutX="41.0" layoutY="46.0" prefHeight="4.0" prefWidth="859.0" AnchorPane.leftAnchor="50.0"
+                   AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0"/>
+        <Separator layoutX="499.0" layoutY="830.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0"
+                   AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0"/>
+    </children>
+</AnchorPane>
