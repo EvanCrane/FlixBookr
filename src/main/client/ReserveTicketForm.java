@@ -16,6 +16,7 @@ import java.io.IOException;
 
 public class ReserveTicketForm
 {
+    //private TicketController controller;
     @FXML
     private Button btnReserve;
     @FXML
@@ -25,6 +26,9 @@ public class ReserveTicketForm
     public void initialize() {
     
     }
+    //public ReserveTicketForm(TicketController controller) {
+    //    this.controller = controller;
+    //}
     
     @FXML
     private void HandleReserve(MouseEvent event) {
@@ -38,6 +42,7 @@ public class ReserveTicketForm
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
                     //TODO PLACE METHOD FOR RESERVING TICKET HERE
+                    ///controller.confirm(Double)
                     alert.close();
                     // Hide this current window
                     ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -65,19 +70,5 @@ public class ReserveTicketForm
                 }
             }
         });
-    }
-    
-    private void OpenHomeScreen(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScreen.fxml"));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-            // Hide this current window
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
