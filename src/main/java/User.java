@@ -5,6 +5,7 @@ public class User
     //Instance Variables
     private String uName;
     private String pWord;
+    private String priv;
     
     //Properties
     ///uName
@@ -23,5 +24,14 @@ public class User
     
     public void setpWord(String pWord) {
         this.pWord = pWord;
+    }
+
+    //Privilege
+    public String getPriv() {
+        return this.priv;
+    }
+
+    public void setPriv(String priv) {
+        this.priv = priv;
     }
 }
