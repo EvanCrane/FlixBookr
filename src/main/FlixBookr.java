@@ -57,7 +57,7 @@ public class FlixBookr extends Application
             primaryStage.setScene(scene);
             
             // Give the controller access to the main app.
-            LoginController controller = loader.getController();
+            LoginForm controller = loader.getController();
             controller.setMainForm(this);
             
             primaryStage.show();
@@ -82,7 +82,7 @@ public class FlixBookr extends Application
             rootLayout.setCenter(homeScreen);
             
             // Give the controller access to the main app.
-            HomeScreenController controller = loader.getController();
+            HomeScreenForm controller = loader.getController();
             controller.setMainForm(this);
         } catch (IOException e) {
             e.printStackTrace();

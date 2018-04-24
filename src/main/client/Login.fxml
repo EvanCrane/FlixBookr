@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="650.0" prefWidth="850.0" style="-fx-background-color: #564256;"
-            xmlns="http://javafx.com/javafx/9.0.4" fx:controller="main.client.LoginController">
+            xmlns="http://javafx.com/javafx/9.0.4" fx:controller="main.client.LoginForm">
     <children>
         <AnchorPane layoutX="425.0" layoutY="152.0" prefHeight="347.0" prefWidth="397.0"
                     style="-fx-background-color: #bFbFbF;">

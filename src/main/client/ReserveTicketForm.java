@@ -14,12 +14,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ScheduleMovieController
+public class ReserveTicketForm
 {
     @FXML
-    private Button btnScheduleMovie;
+    private Button btnReserve;
     @FXML
-    private Button btnCancelChanges;
+    private Button btnCancel;
     
     @FXML
     public void initialize() {
@@ -27,18 +27,20 @@ public class ScheduleMovieController
     }
     
     @FXML
-    private void HandleScheduleMovie(MouseEvent event) {
-        btnScheduleMovie.setOnMouseClicked(new EventHandler<MouseEvent>()
+    private void HandleReserve(MouseEvent event) {
+        btnReserve.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>()
         {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Opening the schedule movie confirmation");
+                //TODO HANDLE AMOUNT ADDING AND CONFIRMATION
+                System.out.println("Opening the cancel reservation confirmation");
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to confirm this reservation?", ButtonType.YES, ButtonType.NO);
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
+                    //TODO PLACE METHOD FOR RESERVING TICKET HERE
                     alert.close();
-                    //TODO SENDING INFO AND ERROR HANDLING
-                    OpenHomeScreen(event);
+                    // Hide this current window
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
                 } else if (alert.getResult() == ButtonType.NO) {
                     alert.close();
                 }
@@ -47,17 +49,17 @@ public class ScheduleMovieController
     }
     
     @FXML
-    private void HandleCancelChanges(MouseEvent event) {
-        btnCancelChanges.setOnMouseClicked(new EventHandler<MouseEvent>()
+    private void HandleCancel(MouseEvent event) {
+        btnCancel.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>()
         {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Opening the cancel changes confirmation");
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to cancel changes?", ButtonType.YES, ButtonType.NO);
+                System.out.println("Opening the cancel reservation alert");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to cancel reserving?", ButtonType.YES, ButtonType.NO);
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
                     alert.close();
-                    OpenHomeScreen(event);
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
                 } else if (alert.getResult() == ButtonType.NO) {
                     alert.close();
                 }
@@ -72,7 +74,7 @@ public class ScheduleMovieController
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
-            // Hide this current window (if this is what you want)
+            // Hide this current window
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();

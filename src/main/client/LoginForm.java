@@ -1,7 +1,6 @@
 package main.client;
 
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginController
+public class LoginForm
 {
     @FXML
     private Label closeX;
@@ -28,7 +27,7 @@ public class LoginController
     
     //private FlixBookr flixBookr;
     
-    public LoginController() {
+    public LoginForm() {
     
     }
     

@@ -28,7 +28,7 @@ import java.io.IOException;
 import static javafx.scene.paint.Color.WHITE;
 import static javafx.scene.text.TextAlignment.CENTER;
 
-public class HomeScreenController
+public class HomeScreenForm
 {
     private FlixBookr flixBookr;
     private BorderPane rootLayout;
