@@ -56,12 +56,12 @@ public class LoginController
     }
     
     @FXML
-    private void HandleLoginButton(ActionEvent event) {
+    private void HandleLoginButton(MouseEvent event) {
         //When login button is clicked
-        btnLogin.setOnAction(new EventHandler<ActionEvent>()
+        btnLogin.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>()
         {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(MouseEvent event) {
                 if (txtUsername.getText().isEmpty()) {
                     Alert alert = new Alert(AlertType.CONFIRMATION, "Please Enter a Username", ButtonType.OK);
                     alert.showAndWait();
@@ -84,23 +84,17 @@ public class LoginController
         });
     }
     
-    private void OpenHomeScreen(ActionEvent event) {
+    private void OpenHomeScreen(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScreen.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
-            // Hide this current window (if this is what you want)
+            // Hide this current window
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    /*
-    public void setMainForm(FlixBookr flixBookr) {
-        this.flixBookr = flixBookr;
-    }
-    */
 }

@@ -38,6 +38,8 @@ public class ReserveTicketController
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
                     alert.close();
+                    // Hide this current window
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
                 } else if (alert.getResult() == ButtonType.NO) {
                     alert.close();
                 }
@@ -56,7 +58,7 @@ public class ReserveTicketController
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
                     alert.close();
-                    OpenHomeScreen(event);
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
                 } else if (alert.getResult() == ButtonType.NO) {
                     alert.close();
                 }
@@ -71,7 +73,7 @@ public class ReserveTicketController
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
-            // Hide this current window (if this is what you want)
+            // Hide this current window
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();
