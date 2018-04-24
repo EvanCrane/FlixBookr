@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.date.Timestamp;
+import java.sql.Timestamp;
 
 import main.java.User;
 import main.java.Reservation;
@@ -40,6 +40,7 @@ public class DBConnector {
             System.out.println("SQLState: " + except.getSQLState());
             System.out.println("VendorError: " + except.getErrorCode());
         }
+        return null;
     }
 
 
@@ -55,20 +56,30 @@ public class DBConnector {
         String query = "Insert into movies(title, rating, starttime, endtime, showtime, image, description)" +
                         "values(?,?,?,?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(query);
-        Timestamp resTime = Timestamp.valueOf(res.resTime);
 
-        try {
-            statement.setString(1, movie.title);
-            statement.setString(2, movie.rating);
-            statement.setTimestamp(3, movie.starttime);
-            statement.setTimestamp(4, movie.endtime);
-            statement.setTimestamp(5, movie.showtime);
-            statement.setString(6,movie.image);
-            statement.setString(7, movie.description);
+        LocalDateTime[] showtimes = movie.getShowTimes();
+        for(int i = 0; i < showtimes.length; i++) {
+            try {
 
-            statement.executeUpdate();
+                statement.setString(1, movie.getTitle());
+                statement.setString(2, movie.getRating());
+                statement.setTimestamp(3, Timestamp.valueOf(movie.getStartTime()));
+                statement.setTimestamp(4, Timestamp.valueOf(movie.getEndTime()));
+                statement.setTimestamp(5, Timestamp.valueOf(showtimes[i]));
+                statement.setString(6,movie.getPromoImage());
+                statement.setString(7, movie.getDescription());
+
+                statement.addBatch();
+            }
+
+            catch (SQLException except){
+                System.out.println("SQLException: " + except.getMessage());
+                System.out.println("SQLState: " + except.getSQLState());
+                System.out.println("VendorError: " + except.getErrorCode());
+            }
         }
 
+        try { statement.executeBatch(); }
         catch (SQLException except){
             System.out.println("SQLException: " + except.getMessage());
             System.out.println("SQLState: " + except.getSQLState());
@@ -97,11 +108,11 @@ public class DBConnector {
         Timestamp resTime = Timestamp.valueOf(res.resTime);
 
         try {
-            statement.setString(1, user.uName);
-            statement.setString(2, movie.title);
-            statement.setDouble(3, res.price);
+            statement.setString(1, user.getuName());
+            statement.setString(2, movie.getTitle());
+            statement.setDouble(3, res.getPrice());
             statement.setTimestamp(4, resTime);
-            statement.setInt(5, res.amount);
+            statement.setInt(5, res.getAmount());
 
             statement.executeUpdate();
         }
@@ -132,7 +143,7 @@ public class DBConnector {
         PreparedStatement statement = connection.prepareStatement(query);
         Timestamp time = Timestamp.valueOf(eventtime);
         try {
-            statement.setString(1, user.uName);
+            statement.setString(1, user.getuName());
             statement.setTimestamp(2, time);
             statement.executeUpdate();
         }
