@@ -27,7 +27,7 @@ public class TicketController implements Controller {
     public Double select(Integer amount, LocalDateTime time, String movieTitle) {
 
         Movie movie = connector.getMovie(movieTitle);
-        if(time.getHour() > regularPriceTime))
+        if(time.getHour() > regularPriceTime)
             return movie.regPrice * amount;
         return movie.matPrice * amount;
 
