@@ -17,8 +17,8 @@ public class Movie
     public String getTitle() {
         return this.title;
     }
-
-    public void setNumber(String title) {
+    
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -74,5 +74,15 @@ public class Movie
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    @Override
+    public boolean equals(Movie movie){
+        if (
+            this.title == movie.getTitle() &&
+            this.showTimes == movie.getShowTimes()
+        )  return true;
+        else
+            return false;
     }
 }

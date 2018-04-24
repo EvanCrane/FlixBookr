@@ -14,6 +14,7 @@ import main.java.Reservation;
 import main.java.Movie;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 
 /**
  * Database Controller.
@@ -86,7 +87,7 @@ public class DBConnector {
             System.out.println("VendorError: " + except.getErrorCode());
         }
 
-        conn.close();
+        connection.close();
     }
 
 
@@ -123,7 +124,7 @@ public class DBConnector {
             System.out.println("VendorError: " + except.getErrorCode());
         }
 
-        conn.close();
+        connection.close();
     }
 
 
@@ -154,7 +155,7 @@ public class DBConnector {
             System.out.println("VendorError: " + except.getErrorCode());
         }
         
-        conn.close();
+        connection.close();
     }
 
 
@@ -185,9 +186,43 @@ public class DBConnector {
             user.setpWord(rs.getString(password));
             user.setPriv(rs.getString(privilege));
         }
+        connection.close()
         return user;
     }
 
+
+    
+    /**
+     * Method to get all movies
+     * @param none
+     * @return HashSet of Movies objects with title and image path set
+     */
+    public HashSet<Movie> getAllMovies() {
+        Connection connection = createConnection();
+        String query = "Select title, image FROM movies";
+        PreparedStatement statement = connection.prepareStatement(query);
+        try{
+            Movie movie = new Movie();
+            ResultSet rs = preparedStatement.executeQuery(query);
+            HashSet<Movie> movieset = new HashSet<Movie>();
+
+            while(rs.next()) {
+                movie.setTitle(rs.getString(title));
+                movie.setPromoImage(rs.getString(image));
+                movieset.add(movie)
+            }
+        }
+
+        connection.close()
+        return movieset;
+    }
+
+
+    /**
+     * Method to get Price of movie
+     * @param mTitle Title of movie
+     * @return Movie objecg with title, regPrice, and matPrice set
+     */
     public Movie getPrice(String mTitle) {
 
         Connection connection = createConnection();
