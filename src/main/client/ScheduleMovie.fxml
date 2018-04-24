@@ -4,7 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="1200.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.ScheduleMovieController" prefHeight="600.0"
+            prefWidth="1200.0"
             style="-fx-background-color: #BFBFBF;" xmlns="http://javafx.com/javafx/9">
     <children>
         <GridPane layoutX="12.0" layoutY="59.0" prefHeight="300.0" prefWidth="577.0"
@@ -124,9 +125,11 @@
                 <Font size="24.0"/>
             </font>
         </Label>
-        <Button layoutX="301.0" layoutY="855.0" mnemonicParsing="false" text="Schedule Movie"
+        <Button fx:id="btnScheduleMovie" onMouseClicked="#HandleScheduleMovie" layoutX="301.0" layoutY="855.0"
+                mnemonicParsing="false" text="Schedule Movie"
                 AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="400.0"/>
-        <Button layoutX="884.0" layoutY="854.0" mnemonicParsing="false" text="Cancel Changes"
+        <Button fx:id="btnCancelChanges" onMouseClicked="#HandleCancelChanges" layoutX="884.0" layoutY="854.0"
+                mnemonicParsing="false" text="Cancel Changes"
                 AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="400.0"/>
         <Separator layoutX="41.0" layoutY="46.0" prefHeight="4.0" prefWidth="859.0" AnchorPane.leftAnchor="50.0"
                    AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0"/>

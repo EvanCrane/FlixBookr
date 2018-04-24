@@ -2,12 +2,11 @@ package main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import main.client.FlixBookrController;
-import main.client.HomeScreenController;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -24,26 +23,41 @@ public class FlixBookr extends Application
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("FlixBookr");
-        
-        InitRootLayout();
-        
-        ShowHomeScreen();
+    
+        //InitRootLayout();
+    
+        ShowLoginScreen(primaryStage);
     }
     
+    public void ShowLoginScreen(Stage stage) {
+        try {
+            // Load root layout from fxml file.
+            Parent root = FXMLLoader.load(getClass().getResource("client/Login.fxml"));
+            stage.initStyle(StageStyle.UNDECORATED);
+            
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /*
     private void InitRootLayout() {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FlixBookr.class
-                    .getResource("client/FlixBookr.fxml"));
-            rootLayout = loader.load();
+                    .getResource("client/Login.fxml"));
+            AnchorPane login = loader.load();
             
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             
             // Give the controller access to the main app.
-            FlixBookrController controller = loader.getController();
+            LoginController controller = loader.getController();
             controller.setMainForm(this);
             
             primaryStage.show();
@@ -52,7 +66,10 @@ public class FlixBookr extends Application
         }
         
     }
+    */
     
+    
+    /*
     private void ShowHomeScreen() {
         try {
             // Load root layout from fxml file.
@@ -71,4 +88,5 @@ public class FlixBookr extends Application
             e.printStackTrace();
         }
     }
+    */
 }
