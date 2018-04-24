@@ -33,7 +33,23 @@ public class TicketController implements Controller {
 
     }
 
-    public void confirm(Reservation res) {
+    public void confirm(LocalDateTime resTime, 
+                        Double price,
+                        Integer amount,
+                        String mTitle,
+                        String uName) {
+        Movie movie = new Movie();
+        User user = new User();
+        Reservation res = new Reservation();
+        
+        user.setuName(uName);
+        movie.setTitle(mTitle);
+        res.setMovie(movie);
+        res.setUser(user);
+        res.setAmount(amount);
+        res.setResTime(resTime);
+        res.setPrice(price);
+
         connector.saveReservation(res);
     }
 
