@@ -13,10 +13,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class ScheduleMovieForm
 {
+    private Desktop desktop = Desktop.getDesktop();
     @FXML
     private Button btnChooseImage;
     @FXML
@@ -37,9 +40,33 @@ public class ScheduleMovieForm
             
             @Override
             public void handle(MouseEvent event) {
-            
+                ConfigureFileChooser(fileChooser);
+                File file = fileChooser.showOpenDialog(new Stage());
+                if (file != null) {
+                    openFile(file);
+                }
             }
         });
+    }
+    
+    private static void ConfigureFileChooser(final FileChooser fileChooser) {
+        fileChooser.setTitle("View Pictures");
+        fileChooser.setInitialDirectory(
+                new File(System.getProperty("user.home"))
+        );
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+    }
+    
+    private void openFile(File file) {
+        try {
+            desktop.open(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @FXML
