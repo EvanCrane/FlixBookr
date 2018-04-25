@@ -223,8 +223,8 @@ public class ScheduleMovieForm
         {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Opening the cancel changes confirmation");
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to cancel changes?", ButtonType.YES, ButtonType.NO);
+                System.out.println("Opening the OpenHomeScreen changes confirmation");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to OpenHomeScreen changes?", ButtonType.YES, ButtonType.NO);
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
                     alert.close();

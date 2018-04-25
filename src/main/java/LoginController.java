@@ -43,7 +43,7 @@ public class LoginController implements Controller {
 
     }
 
-    public void cancel() {
+    public void OpenHomeScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("client/HomeScreen.fxml"));
             Parent root1 = fxmlLoader.load();

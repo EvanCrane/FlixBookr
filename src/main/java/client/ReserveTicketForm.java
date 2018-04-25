@@ -76,7 +76,7 @@ public class ReserveTicketForm
                 }
                 
                 //TODO HANDLE AMOUNT ADDING AND CONFIRMATION
-                System.out.println("Opening the cancel reservation confirmation");
+                System.out.println("Opening the OpenHomeScreen reservation confirmation");
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to confirm this reservation?", ButtonType.YES, ButtonType.NO);
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
@@ -98,8 +98,8 @@ public class ReserveTicketForm
         {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Opening the cancel reservation alert");
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to cancel reserving?", ButtonType.YES, ButtonType.NO);
+                System.out.println("Opening the OpenHomeScreen reservation alert");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to OpenHomeScreen reserving?", ButtonType.YES, ButtonType.NO);
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
                     alert.close();

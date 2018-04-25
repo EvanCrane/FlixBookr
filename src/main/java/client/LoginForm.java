@@ -79,24 +79,10 @@ public class LoginForm
                 }
                 System.out.println("Attempting to log in using given credentials.");
                 //loginController.submit(txtUsername.getText(),pwdPassword.getText());
-                loginController.cancel();
+                loginController.OpenHomeScreen();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 //OpenHomeScreen(event);
             }
         });
-    }
-    
-    private void OpenHomeScreen(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomeScreen.fxml"));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-            // Hide this current window
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -38,4 +38,8 @@ public class ScheduleController implements Controller
 	{
 
 	}
+	
+	public void OpenHomeScreen() {
+	
+	}
 }

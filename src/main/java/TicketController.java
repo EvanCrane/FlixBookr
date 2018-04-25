@@ -49,4 +49,8 @@ public class TicketController implements Controller {
 
         connector.saveReservation(res);
     }
+    
+    public void OpenHomeScreen() {
+    
+    }
 }

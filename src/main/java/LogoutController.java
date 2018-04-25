@@ -21,4 +21,8 @@ public class LogoutController implements Controller
 		LocalDateTime a = LocalDateTime.now();
 		connector.saveEvent(user, a, "Logout");
 	}
+	
+	public void OpenHomeScreen() {
+	
+	}
 }
