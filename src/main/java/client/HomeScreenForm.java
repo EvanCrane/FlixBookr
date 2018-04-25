@@ -22,6 +22,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.FlixBookr;
+import main.java.LoginController;
 
 import java.io.IOException;
 
@@ -206,19 +207,12 @@ public class HomeScreenForm
     
     
     private void OpenLogin(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
-            // Hide this current window (if this is what you want)
-            //TODO MAY NEED TO ACTUALLY CLOSE THE MAIN WINDOW PROCESS
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    
+        LoginController login = new LoginController();
+        login.login(new Stage());
+        // Hide this current window (if this is what you want)
+        //TODO MAY NEED TO ACTUALLY CLOSE THE MAIN WINDOW PROCESS
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
     
 }
