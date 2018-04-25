@@ -1,75 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootAnchor" style="-fx-background-color: #FC814A;"
-            xmlns="http://javafx.com/javafx/9" fx:controller="main.java.client.HomeScreenForm">
+
+<AnchorPane fx:id="rootAnchor" style="-fx-background-color: #FC814A;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.client.HomeScreenForm">
     <children>
-        <ButtonBar layoutX="4.0" layoutY="11.0" prefHeight="50.0" prefWidth="1198.0"
-                   style="-fx-background-color: #E8E8E8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                   AnchorPane.topAnchor="0.0">
+        <ButtonBar layoutX="4.0" layoutY="11.0" prefHeight="50.0" prefWidth="1198.0" style="-fx-background-color: #E8E8E8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <buttons>
-                <Button fx:id="btnScheduleMovie" mnemonicParsing="false" onMouseReleased="#HandleScheduleMovie"
-                        text="Schedule Movie">
+                <Button fx:id="btnScheduleMovie" disable="true" mnemonicParsing="false" onMouseReleased="#HandleScheduleMovie" text="Schedule Movie" visible="false">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                     <padding>
-                        <Insets left="10.0" right="10.0"/>
+                        <Insets left="10.0" right="10.0" />
                     </padding>
                 </Button>
                 <Label fx:id="welcomeName" prefHeight="25.0" text="Welcome ...">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                     <padding>
-                        <Insets left="10.0" right="10.0"/>
+                        <Insets left="10.0" right="10.0" />
                     </padding>
                 </Label>
                 <Button fx:id="btnLogout" mnemonicParsing="false" onMouseReleased="#HandleLogout" text="Logout">
                     <padding>
-                        <Insets left="10.0" right="10.0"/>
+                        <Insets left="10.0" right="10.0" />
                     </padding>
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </Button>
             </buttons>
             <padding>
-                <Insets left="10.0" right="15.0"/>
+                <Insets left="10.0" right="15.0" />
             </padding>
         </ButtonBar>
-        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" text="FlixBookr Movie Gallery"
-               textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-               AnchorPane.topAnchor="75.0">
+        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="52.0" text="FlixBookr Movie Gallery" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
             <font>
-                <Font name="System Bold Italic" size="42.0"/>
+                <Font name="System Bold Italic" size="42.0" />
             </font>
         </Label>
-        <ScrollPane fx:id="scrollPane" layoutY="51.0" style="-fx-background: #FC814A;" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+        <ScrollPane fx:id="scrollPane" layoutY="51.0" style="-fx-background: #FC814A;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
             <content>
                 <StackPane fx:id="scrollChildStack" style="-fx-background-color: #FC814A;">
                     <children>
-                        <GridPane fx:id="gridMovies" alignment="TOP_CENTER" layoutX="71.0" layoutY="32.0"
-                                  style="-fx-background-color: #FC814A;" AnchorPane.bottomAnchor="0.0"
-                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0"
-                                  StackPane.alignment="CENTER">
+                        <GridPane fx:id="gridMovies" alignment="TOP_CENTER" layoutX="71.0" layoutY="32.0" style="-fx-background-color: #FC814A;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" StackPane.alignment="CENTER">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints maxHeight="842.0" minHeight="10.0" prefHeight="840.0"
-                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="842.0" minHeight="10.0" prefHeight="840.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <AnchorPane fx:id="anchorRowA" prefWidth="200.0"/>
-                                <AnchorPane fx:id="anchorRowB" prefWidth="200.0" GridPane.columnIndex="1"/>
-                                <AnchorPane fx:id="anchorRowC" prefWidth="200.0" GridPane.columnIndex="2"/>
+                                <AnchorPane fx:id="anchorRowA" prefWidth="200.0" />
+                                <AnchorPane fx:id="anchorRowB" prefWidth="200.0" GridPane.columnIndex="1" />
+                                <AnchorPane fx:id="anchorRowC" prefWidth="200.0" GridPane.columnIndex="2" />
                             </children>
                         </GridPane>
                     </children>

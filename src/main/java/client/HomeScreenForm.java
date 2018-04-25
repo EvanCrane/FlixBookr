@@ -42,7 +42,7 @@ public class HomeScreenForm
     private HomeScreenController homeScreenController;
     //Temporary Image generator index
     private int tempIndex = 9;
-
+    private Boolean isAdmin = false;
     @FXML
     private AnchorPane rootAnchor;
     @FXML
@@ -64,11 +64,6 @@ public class HomeScreenForm
     @FXML
     private AnchorPane anchorRowC;
     
-    
-    public void setMainForm(FlixBookr flixBookr) {
-        this.flixBookr = flixBookr;
-    }
-    
     // called by the FXML loader after the labels declared above are injected:
     @FXML
     public void initialize() {
@@ -78,6 +73,14 @@ public class HomeScreenForm
         welcomeName.setText("Welcome Evan Crane");
         HashSet<Movie> movies = homeScreenController.getMovieList();
         CreateImageViews(6,movies);
+        
+    }
+    
+    public void enableAdminControls(boolean isAdmin) {
+        if(isAdmin){
+            btnScheduleMovie.setVisible(true);
+            btnScheduleMovie.setDisable(false);
+        }
     }
     
     private void CreateImageViews(int index,HashSet<Movie> movies) {

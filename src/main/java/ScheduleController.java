@@ -60,7 +60,7 @@ public class ScheduleController implements Controller
 		connector.saveMovie(movie);
 	}
 	
-	public void OpenHomeScreen(){
+	public void OpenHomeScreen(boolean isAdmin){
 	
 	}
 }

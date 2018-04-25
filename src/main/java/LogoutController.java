@@ -22,7 +22,7 @@ public class LogoutController implements Controller
 		connector.saveEvent(user, a, "Logout");
 	}
 	
-	public void OpenHomeScreen() {
+	public void OpenHomeScreen(boolean isAdmin) {
 	
 	}
 }

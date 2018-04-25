@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import main.java.client.HomeScreenForm;
 import main.java.client.LoginForm;
 import main.org.mindrot.jbcrypt.BCrypt;
 import main.server.DBConnector;
@@ -40,13 +41,15 @@ public class LoginController implements Controller {
 
     }
 
-    public void OpenHomeScreen() {
+    public void OpenHomeScreen(boolean isAdmin) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("client/HomeScreen.fxml"));
+            HomeScreenForm homeScreenForm = new HomeScreenForm();
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
+            homeScreenForm.enableAdminControls(isAdmin);
         } catch (IOException e) {
             e.printStackTrace();
         }

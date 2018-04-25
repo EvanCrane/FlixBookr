@@ -73,10 +73,19 @@ public class LoginForm
                     return;
                 }
                 System.out.println("Attempting to log in using given credentials.");
-                loginController.submit(txtUsername.getText(),pwdPassword.getText());
-                loginController.OpenHomeScreen();
-                ((Node) (event.getSource())).getScene().getWindow().hide();
-                //OpenHomeScreen(event);
+                boolean[] isLoggedIn = loginController.submit(txtUsername.getText(),pwdPassword.getText());
+                if(isLoggedIn[0]) {
+                    loginController.OpenHomeScreen(isLoggedIn[1]);
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                }
+                else {
+                    Alert alert = new Alert(AlertType.WARNING, "Incorrect username and cassword combination", ButtonType.OK);
+                    alert.showAndWait();
+                    if (alert.getResult() == ButtonType.OK) {
+                        alert.close();
+                    }
+                    return;
+                }
             }
         });
     }

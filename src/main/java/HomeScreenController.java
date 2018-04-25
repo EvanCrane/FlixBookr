@@ -15,7 +15,7 @@ public class HomeScreenController implements Controller{
         return connector.getAllMovies();
     }
 
-    public void OpenHomeScreen(){
+    public void OpenHomeScreen(boolean isAdmin){
         return;
     }
 }
