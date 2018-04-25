@@ -1,7 +1,6 @@
 package main.server;
 
 
-import java.sql.connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,22 +28,37 @@ public class DBConnector {
      * Method to open a connection to the database
      * @return Theater Table Connection 
      */
-    public Connection createConnection() {
+    private Connection createConnection() {
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            return DriverManager.getConnection("jdbc:mysql://localhost/theater?" +
-                                           "user=root&password=Moodey251");
+            Class.forName("com.mysql.jdbc.Driver");
+            try {
+                return DriverManager.getConnection("jdbc:mysql://localhost/theater?" +
+                        "user=root&password=Moodey251");
+            }
+            catch(SQLException except) {
+                System.out.println("SQLException: " + except.getMessage());
+                System.out.println("SQLState: " + except.getSQLState());
+                System.out.println("VendorError: " + except.getErrorCode());
+            }
+        }
+        catch(ClassNotFoundException except) {
+            System.out.println("ClassNotFoundException: " + except.getMessage());
         }
 
+
+        return null;
+    }
+
+    private void closeConnection(Connection connection) {
+        try {
+            connection.close();
+        }
         catch(SQLException except) {
             System.out.println("SQLException: " + except.getMessage());
             System.out.println("SQLState: " + except.getSQLState());
             System.out.println("VendorError: " + except.getErrorCode());
         }
-        return null;
     }
-
-
 
 
     /**
@@ -56,38 +70,45 @@ public class DBConnector {
         Connection connection = createConnection();
         String query = "Insert into movies(title, rating, starttime, endtime, showtime, image, description)" +
                         "values(?,?,?,?,?,?,?)";
-        PreparedStatement statement = connection.prepareStatement(query);
 
         LocalDateTime[] showtimes = movie.getShowTimes();
-        for(int i = 0; i < showtimes.length; i++) {
-            try {
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            for(int i = 0; i < showtimes.length; i++) {
+                try {
 
-                statement.setString(1, movie.getTitle());
-                statement.setString(2, movie.getRating());
-                statement.setTimestamp(3, Timestamp.valueOf(movie.getStartTime()));
-                statement.setTimestamp(4, Timestamp.valueOf(movie.getEndTime()));
-                statement.setTimestamp(5, Timestamp.valueOf(showtimes[i]));
-                statement.setString(6,movie.getPromoImage());
-                statement.setString(7, movie.getDescription());
+                    statement.setString(1, movie.getTitle());
+                    statement.setString(2, movie.getRating());
+                    statement.setTimestamp(3, Timestamp.valueOf(movie.getStartTime()));
+                    statement.setTimestamp(4, Timestamp.valueOf(movie.getEndTime()));
+                    statement.setTimestamp(5, Timestamp.valueOf(showtimes[i]));
+                    statement.setString(6,movie.getPromoImage());
+                    statement.setString(7, movie.getDescription());
 
-                statement.addBatch();
+                    statement.addBatch();
+                }
+
+                catch (SQLException except){
+                    System.out.println("SQLException: " + except.getMessage());
+                    System.out.println("SQLState: " + except.getSQLState());
+                    System.out.println("VendorError: " + except.getErrorCode());
+                }
             }
 
+            try { statement.executeBatch(); }
             catch (SQLException except){
                 System.out.println("SQLException: " + except.getMessage());
                 System.out.println("SQLState: " + except.getSQLState());
                 System.out.println("VendorError: " + except.getErrorCode());
             }
         }
-
-        try { statement.executeBatch(); }
         catch (SQLException except){
             System.out.println("SQLException: " + except.getMessage());
             System.out.println("SQLState: " + except.getSQLState());
             System.out.println("VendorError: " + except.getErrorCode());
         }
 
-        connection.close();
+        closeConnection(connection);
     }
 
 
@@ -99,16 +120,17 @@ public class DBConnector {
      */
     public void saveReservation(Reservation res) {
 
-        Movie movie = res.movie;
-        User user = res.user;
+        Movie movie = res.getMovie();
+        User user = res.getUser();
 
         Connection connection = createConnection();
         String query = "Insert into reservations(username, movie, price, restime, amount)" +
                         "values(?,?,?,?,?)";
-        PreparedStatement statement = connection.prepareStatement(query);
-        Timestamp resTime = Timestamp.valueOf(res.resTime);
+
+        Timestamp resTime = Timestamp.valueOf(res.getResTime());
 
         try {
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, user.getuName());
             statement.setString(2, movie.getTitle());
             statement.setDouble(3, res.getPrice());
@@ -124,7 +146,7 @@ public class DBConnector {
             System.out.println("VendorError: " + except.getErrorCode());
         }
 
-        connection.close();
+        closeConnection(connection);
     }
 
 
@@ -141,9 +163,10 @@ public class DBConnector {
         Connection connection = createConnection();
         String query = "Insert into sessions(username, time, event) values (?, ?," +
                         event + ")";
-        PreparedStatement statement = connection.prepareStatement(query);
+
         Timestamp time = Timestamp.valueOf(eventtime);
         try {
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, user.getuName());
             statement.setTimestamp(2, time);
             statement.executeUpdate();
@@ -154,8 +177,15 @@ public class DBConnector {
             System.out.println("SQLState: " + except.getSQLState());
             System.out.println("VendorError: " + except.getErrorCode());
         }
-        
-        connection.close();
+
+        try {
+            connection.close();
+        }
+        catch(SQLException except) {
+            System.out.println("SQLException: " + except.getMessage());
+            System.out.println("SQLState: " + except.getSQLState());
+            System.out.println("VendorError: " + except.getErrorCode());
+        }
     }
 
 
@@ -168,11 +198,17 @@ public class DBConnector {
 
         Connection connection = createConnection();
         String query = "Select username,password, privilege FROM users WHERE username = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-
+        User user = new User();
         try {
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, uName);
-            ResultSet rs = preparedStatement.executeQuery(query);
+            ResultSet rs = statement.executeQuery(query);
+
+            while(rs.next()) {
+                user.setuName(rs.getString("username"));
+                user.setpWord(rs.getString("password"));
+                user.setPriv(rs.getString("privilege"));
+            }
         }
         catch(SQLException except) {
             System.out.println("SQLException: " + except.getMessage());
@@ -180,13 +216,7 @@ public class DBConnector {
             System.out.println("VendorError: " + except.getErrorCode());
         }
 
-        User user = new User();
-        while(rs.next()) {
-            user.setuName(rs.getString(username));
-            user.setpWord(rs.getString(password));
-            user.setPriv(rs.getString(privilege));
-        }
-        connection.close()
+        closeConnection(connection);
         return user;
     }
 
@@ -194,26 +224,32 @@ public class DBConnector {
     
     /**
      * Method to get all movies
-     * @param none
      * @return HashSet of Movies objects with title and image path set
      */
     public HashSet<Movie> getAllMovies() {
         Connection connection = createConnection();
         String query = "Select title, image FROM movies";
-        PreparedStatement statement = connection.prepareStatement(query);
+        HashSet<Movie> movieset = new HashSet<Movie>();
         try{
+            PreparedStatement statement = connection.prepareStatement(query);
             Movie movie = new Movie();
-            ResultSet rs = preparedStatement.executeQuery(query);
-            HashSet<Movie> movieset = new HashSet<Movie>();
+            ResultSet rs = statement.executeQuery(query);
+
 
             while(rs.next()) {
-                movie.setTitle(rs.getString(title));
-                movie.setPromoImage(rs.getString(image));
-                movieset.add(movie)
+                movie.setTitle(rs.getString("title"));
+                movie.setPromoImage(rs.getString("image"));
+                movieset.add(movie);
             }
         }
+        catch(SQLException except) {
+            System.out.println("SQLException: " + except.getMessage());
+            System.out.println("SQLState: " + except.getSQLState());
+            System.out.println("VendorError: " + except.getErrorCode());
+        }
 
-        connection.close()
+
+        closeConnection(connection);
         return movieset;
     }
 
@@ -227,16 +263,17 @@ public class DBConnector {
 
         Connection connection = createConnection();
         String query = "Select title, regprice, matprice FROM movies WHERE title = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
+
         
         Movie movie = new Movie();
         try {
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, mTitle);
-            ResultSet rs = preparedStatement.executeQuery(query);
+            ResultSet rs = statement.executeQuery(query);
             while(rs.next()) {
-                movie.setTitle(rs.getString(title));
-                movie.setregPrice(rs.getDouble(regprice));
-                movie.setmatPrice(rs.getDouble(matprice));
+                movie.setTitle(rs.getString("title"));
+                movie.setRegPrice(rs.getDouble("regprice"));
+                movie.setMatPrice(rs.getDouble("matprice"));
             }
         }
         catch(SQLException except) {
@@ -244,7 +281,7 @@ public class DBConnector {
             System.out.println("SQLState: " + except.getSQLState());
             System.out.println("VendorError: " + except.getErrorCode());
         }
-
+        closeConnection(connection);
         return movie;
 
     }

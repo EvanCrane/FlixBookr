@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import main.org.mindrot.jbcrypt.BCrypt;
 import main.server.DBConnector;
-import main.server.Controller;
 import main.client.LoginForm;
 import main.java.User;
 
@@ -36,10 +35,10 @@ public class LoginController implements Controller {
 
         Boolean[] userInfo = new Boolean[2];
         User user = connector.getUser(uName);
-        userInfo[0] = crypt.checkpw(pWord, user.pWord);
+        userInfo[0] = crypt.checkpw(pWord, user.getpWord());
 
         if (userInfo[0]) {
-            if(user.priv == "admin")
+            if(user.getPriv() == "admin")
                 userInfo[1] = true;
             saveLogin(user);
         }

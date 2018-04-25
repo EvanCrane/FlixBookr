@@ -4,7 +4,6 @@ package main.java;
 import java.time.LocalDateTime;
 
 import main.server.DBConnector;
-import main.server.Controller;
 import main.client.ReserveTicketForm;
 import main.java.Reservation;
 import main.java.Movie;
@@ -26,10 +25,10 @@ public class TicketController implements Controller {
 
     public Double select(Integer amount, LocalDateTime time, String movieTitle) {
 
-        Movie movie = connector.getMovie(movieTitle);
+        Movie movie = connector.getPrice(movieTitle);
         if(time.getHour() > regularPriceTime)
-            return movie.regPrice * amount;
-        return movie.matPrice * amount;
+            return movie.getRegPrice() * amount;
+        return movie.getMatPrice() * amount;
 
     }
 
@@ -51,9 +50,5 @@ public class TicketController implements Controller {
         res.setPrice(price);
 
         connector.saveReservation(res);
-    }
-
-    public void cancel() {
-        resform.HandleCancel();
     }
 }

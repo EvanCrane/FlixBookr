@@ -11,6 +11,8 @@ public class Movie
     private LocalDateTime[] showTimes;
     private String promoImage;
     private String description;
+    private Double regPrice;
+    private Double matPrice;
 
     //Properties
     ///Title
@@ -75,8 +77,25 @@ public class Movie
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    @Override
+
+    ///Description
+    public Double getRegPrice() {
+        return this.regPrice;
+    }
+
+    public void setRegPrice(Double regPrice) {
+        this.regPrice = regPrice;
+    }
+
+    ///Description
+    public Double getMatPrice() {
+        return this.matPrice;
+    }
+
+    public void setMatPrice(Double matPrice) {
+        this.matPrice = matPrice;
+    }
+
     public boolean equals(Movie movie){
         if (
             this.title == movie.getTitle() &&
