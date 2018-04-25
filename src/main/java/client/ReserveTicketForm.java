@@ -18,7 +18,7 @@ public class ReserveTicketForm
 {
     private TicketController controller;
     @FXML
-    private TextField txtMovieTitle1;
+    private Label txtMovieTitle1;
     @FXML
     private ImageView imageMovie;
     @FXML
@@ -39,11 +39,15 @@ public class ReserveTicketForm
     @FXML
     public void initialize(TicketController ticketController, String mTitle) {
         this.controller = ticketController;
-        this.txtMovieTitle1.setText(mTitle);
+        
     }
     //public ReserveTicketForm(TicketController controller) {
     //    this.controller = controller;
     //}
+    
+    public void DisplayDetails(String mTitle) {
+        txtMovieTitle1.setText(mTitle);
+    }
     
     @FXML
     private void HandleReserve(MouseEvent event) {

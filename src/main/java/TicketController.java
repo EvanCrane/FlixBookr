@@ -26,14 +26,15 @@ public class TicketController implements Controller {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("client/ReserveTicket.fxml"));
             ReserveTicketForm reserveTicketForm = new ReserveTicketForm();
-            fxmlLoader.setController(reserveTicketForm);
             Parent root1 = fxmlLoader.load();
             reserveTicketForm = fxmlLoader.getController();
             reserveTicketForm.initialize(this, mTitle);
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Reserve Ticket");
+            
             stage.show();
+            reserveTicketForm.DisplayDetails(mTitle);
             // Hide this current window (if this is what you want)
             //((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (IOException e) {

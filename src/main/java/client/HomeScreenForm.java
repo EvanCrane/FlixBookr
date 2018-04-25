@@ -103,7 +103,7 @@ public class HomeScreenForm
                     System.out.println("Opening the reserve ticket window");
                     //Need to pass in movie title
                     TicketController ticketController = new TicketController();
-                    ticketController.ReserveTicket(new Stage(),defaultTitle);
+                    ticketController.ReserveTicket(new Stage(), defaultTitle);
                 }
             });
             
