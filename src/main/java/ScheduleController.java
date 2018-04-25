@@ -46,7 +46,6 @@ public class ScheduleController implements Controller
 						LocalDateTime stT,
 						LocalDateTime enT,
 						LocalDateTime[] shT,
-						String poster,
 						String descr) {
 		Movie movie = new Movie();
 		movie.setRating(rate);
@@ -54,7 +53,6 @@ public class ScheduleController implements Controller
 		movie.setStartTime(stT);
 		movie.setEndTime(enT);
 		movie.setShowTime(shT);
-		movie.setPromoImage(poster);
 		movie.setDescription(descr);
 
 		connector.saveMovie(movie);

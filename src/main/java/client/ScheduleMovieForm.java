@@ -1,5 +1,6 @@
 package main.java.client;
 
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,16 +15,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import main.java.ScheduleController;
+import javafx.collections.ObservableList;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class ScheduleMovieForm
 {
     private ScheduleController scheduleController;
     private Desktop desktop = Desktop.getDesktop();
+    private List<LocalDateTime> timeSelections;
     @FXML
     private TextField txtMovieTitle;
     @FXML
@@ -33,7 +41,7 @@ public class ScheduleMovieForm
     @FXML
     private DatePicker dateEnd;
     @FXML
-    private ComboBox comboShowtimes;
+    private ListView timesListView;
     @FXML
     private TextField txtMatDollar;
     @FXML
@@ -56,6 +64,32 @@ public class ScheduleMovieForm
         this.scheduleController = scheduleController;
         HandleScheduleMovie();
         HandleCancelChanges();
+        SetTimesList();
+        SetRatingChoices();
+    }
+    
+    private void SetRatingChoices() {
+        choiceRating.setItems(FXCollections.observableArrayList(
+                "G", "PG ", "PG-13", "R"));
+    }
+    private void SetTimesList() {
+        ObservableList<String> list = FXCollections.observableArrayList();
+        list.addAll("12:00", "1:00", "2:00", "3:00", "4:00", "5:00", "6:00",
+                "7:00", "8:00", "9:00", "10:00", "11:00");
+        timesListView.setItems(list);
+        timesListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        timesListView.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event) {
+                ObservableList<String> selectedItems =  timesListView.getSelectionModel().getSelectedItems();
+    
+                for(String s : selectedItems){
+                    System.out.println("selected item " + s);
+                    timeSelections.add(LocalDateTime.of(LocalDate.now(),(LocalTime.parse(s))));
+                }
+            }
+        });
     }
     
     @FXML
@@ -145,7 +179,7 @@ public class ScheduleMovieForm
                     }
                     return;
                 }
-                if (comboShowtimes.getValue() == null) {
+                if (timesListView.getSelectionModel().getSelectedItems() == null) {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Please select showtimes", ButtonType.OK);
                     alert.showAndWait();
                     if (alert.getResult() == ButtonType.OK) {
@@ -211,9 +245,22 @@ public class ScheduleMovieForm
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to confirm this reservation?", ButtonType.YES, ButtonType.NO);
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
+                    //GETTING INFO FROM COMPONENTS
+                    String title = txtMovieTitle.getText();
+                    String ratingChoice = choiceRating.getSelectionModel().getSelectedItem().toString();
+                    LocalDateTime startTime = LocalDateTime.of(dateStart.getValue(), LocalTime.of(0,0));
+                    LocalDateTime endTime = LocalDateTime.of(dateEnd.getValue(), LocalTime.of(0,0));
+                    List<LocalDateTime> timeSelect = timeSelections;
+                    LocalDateTime[] timeSelectArray = new LocalDateTime[timeSelect.size()];
+                    timeSelectArray = timeSelect.toArray(timeSelectArray);
+                    Double matPrice = Double.parseDouble(txtMatDollar.getText().toString() + "." + txtMatCent.getText().toString());
+                    Double standPrice = Double.parseDouble(txtStandDollar.getText().toString() + "." + txtStandCent.getText().toString());
+                    String description = txtDescription.getText().toString();
+                    
+                    ScheduleController scheduleController = new ScheduleController();
+                    scheduleController.confirm(title, ratingChoice,startTime, endTime, timeSelectArray, description);
                     alert.close();
-                    //TODO SENDING INFO AND ERROR HANDLING
-                    //scheduleController.confirm();
+                    
                     OpenHomeScreen(event);
                 } else if (alert.getResult() == ButtonType.NO) {
                     alert.close();
