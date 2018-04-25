@@ -6,9 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -17,6 +16,20 @@ import java.io.IOException;
 public class ReserveTicketForm
 {
     //private TicketController controller;
+    @FXML
+    private TextField txtMovieTitle1;
+    @FXML
+    private ImageView imageMovie;
+    @FXML
+    private TextArea txtDescription;
+    @FXML
+    private ChoiceBox choiceTickets;
+    @FXML
+    private DatePicker dateMovieDate;
+    @FXML
+    private ChoiceBox choiceShowTime;
+    @FXML
+    private Label labelAmount;
     @FXML
     private Button btnReserve;
     @FXML
@@ -36,6 +49,32 @@ public class ReserveTicketForm
         {
             @Override
             public void handle(MouseEvent event) {
+                //Validation for fields
+                if (choiceTickets.getValue() == null) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Please select an amount of tickets", ButtonType.OK);
+                    alert.showAndWait();
+                    if (alert.getResult() == ButtonType.OK) {
+                        alert.close();
+                    }
+                    return;
+                }
+                if(dateMovieDate.getValue() == null) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter a date for the reservation", ButtonType.OK);
+                    alert.showAndWait();
+                    if (alert.getResult() == ButtonType.OK) {
+                        alert.close();
+                    }
+                    return;
+                }
+                if(choiceShowTime.getValue() == null) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a showtime", ButtonType.OK);
+                    alert.showAndWait();
+                    if (alert.getResult() == ButtonType.OK) {
+                        alert.close();
+                    }
+                    return;
+                }
+                
                 //TODO HANDLE AMOUNT ADDING AND CONFIRMATION
                 System.out.println("Opening the cancel reservation confirmation");
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to confirm this reservation?", ButtonType.YES, ButtonType.NO);
