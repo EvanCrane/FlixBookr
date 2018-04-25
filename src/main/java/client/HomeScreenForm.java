@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.FlixBookr;
 import main.java.LoginController;
+import main.java.TicketController;
 
 import java.io.IOException;
 
@@ -33,7 +34,9 @@ public class HomeScreenForm
 {
     private FlixBookr flixBookr;
     private BorderPane rootLayout;
-    
+
+    private TicketController ticketController;
+
     //Temporary Image generator index
     private int tempIndex = 9;
     
@@ -63,6 +66,7 @@ public class HomeScreenForm
     public void initialize() {
         //Make sure that the user logs in
         //Temp Session Name
+        ticketController = new TicketController();
         welcomeName.setText("Welcome Evan Crane");
         CreateImageViews(tempIndex);
     }
@@ -98,7 +102,8 @@ public class HomeScreenForm
                 public void handle(MouseEvent event) {
                     System.out.println("Opening the reserve ticket window");
                     //Need to pass in movie title
-                    OpenReserveTicketWindow(event, defaultTitle);
+                    TicketController ticketController = new TicketController();
+                    ticketController.ReserveTicket(new Stage(),defaultTitle);
                 }
             });
             
@@ -123,7 +128,9 @@ public class HomeScreenForm
                 public void handle(MouseEvent event) {
                     System.out.println("Opening the reserve ticket window");
                     //Need to pass in movie title
-                    OpenReserveTicketWindow(event, defaultTitle);
+
+                    TicketController ticketController = new TicketController();
+                    ticketController.ReserveTicket(new Stage(),defaultTitle);
                 }
             });
         }

@@ -1,8 +1,14 @@
 package main.java;
 
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import main.server.DBConnector;
 import main.java.client.ReserveTicketForm;
 
@@ -16,9 +22,23 @@ public class TicketController implements Controller {
         connector = new DBConnector();
     }
     
-    public void ReserveTicket() {
-        //resForm = new ReserveTicketForm(this);
-        //resForm.initialize();
+    public void ReserveTicket(Stage stage, String mTitle) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("client/ReserveTicket.fxml"));
+            ReserveTicketForm reserveTicketForm = new ReserveTicketForm();
+            fxmlLoader.setController(reserveTicketForm);
+            Parent root1 = fxmlLoader.load();
+            reserveTicketForm = fxmlLoader.getController();
+            reserveTicketForm.initialize(this, mTitle);
+            stage.setScene(new Scene(root1));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Reserve Ticket");
+            stage.show();
+            // Hide this current window (if this is what you want)
+            //((Node)(event.getSource())).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Double select(Integer amount, LocalDateTime time, String movieTitle) {

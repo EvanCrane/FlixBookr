@@ -10,12 +10,13 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import main.java.TicketController;
 
 import java.io.IOException;
 
 public class ReserveTicketForm
 {
-    //private TicketController controller;
+    private TicketController controller;
     @FXML
     private TextField txtMovieTitle1;
     @FXML
@@ -36,8 +37,9 @@ public class ReserveTicketForm
     private Button btnCancel;
     
     @FXML
-    public void initialize() {
-    
+    public void initialize(TicketController ticketController, String mTitle) {
+        this.controller = ticketController;
+        this.txtMovieTitle1.setText(mTitle);
     }
     //public ReserveTicketForm(TicketController controller) {
     //    this.controller = controller;

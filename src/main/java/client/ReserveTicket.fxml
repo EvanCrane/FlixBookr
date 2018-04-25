@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.client.ReserveTicketForm">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane layoutX="400.0" layoutY="255.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -75,7 +75,7 @@
                   <Separator layoutX="327.0" layoutY="49.0" prefHeight="10.0" prefWidth="400.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
                   <ImageView fx:id="imageMovie" fitHeight="183.0" fitWidth="120.0" layoutX="76.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="75.0">
                      <image>
-                        <Image url="@../../images/defaultPoster.png" />
+                        <Image url="@../../../images/defaultPoster.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="txtMovieTitle1" alignment="CENTER" layoutX="242.0" layoutY="76.0" prefHeight="18.0" text="Sample Movie" textAlignment="CENTER" AnchorPane.topAnchor="75.0">
