@@ -19,10 +19,15 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import main.FlixBookr;
 import main.java.LoginController;
+import main.java.LogoutController;
 import main.java.TicketController;
+import main.java.HomeScreenController;
+import main.java.Movie;
 
+import java.util.HashSet;
 import java.io.IOException;
 
 import static javafx.scene.paint.Color.WHITE;
@@ -34,7 +39,7 @@ public class HomeScreenForm
     private BorderPane rootLayout;
 
     private TicketController ticketController;
-
+    private HomeScreenController homeScreenController;
     //Temporary Image generator index
     private int tempIndex = 9;
 
@@ -70,11 +75,13 @@ public class HomeScreenForm
         //Make sure that the user logs in
         //Temp Session Name
         ticketController = new TicketController();
+        homeScreenController = new HomeScreenController();
         welcomeName.setText("Welcome Evan Crane");
-        CreateImageViews(tempIndex);
+        HashSet<Movie> movies = homeScreenController.getMovieList();
+        CreateImageViews(movies.size(),movies);
     }
     
-    private void CreateImageViews(int index) {
+    private void CreateImageViews(int index,HashSet<Movie> movies) {
         ImageView[] image = new ImageView[index];
         Label[] label = new Label[index];
         Image defaultImg = new Image("/images/defaultPoster.png");
@@ -207,7 +214,9 @@ public class HomeScreenForm
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
                     alert.close();
-                    //TODO LOGOUT STUFF
+                    //We have to have a username at minimum on this forms attributes
+                    //LogoutController logoutController = new LogoutController(user);
+                    //logoutController.confirm();
                     OpenLogin(event);
                 } else if (alert.getResult() == ButtonType.NO) {
                     alert.close();

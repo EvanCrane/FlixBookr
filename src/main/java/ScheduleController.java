@@ -15,14 +15,15 @@ public class ScheduleController implements Controller
 		connector = new DBConnector();
 	}
 	
-	public void scheduleMovie(String title,
-							  String rate,
-							  LocalDateTime stT,
-							  LocalDateTime enT,
-							  LocalDateTime[] shT,
-							  String poster,
-							  String descr)
-	{
+	public void scheduleMovie(){}
+
+	public void confirm(String title,
+						String rate,
+						LocalDateTime stT,
+						LocalDateTime enT,
+						LocalDateTime[] shT,
+						String poster,
+						String descr) {
 		Movie movie = new Movie();
 		movie.setRating(rate);
 		movie.setTitle(title);
@@ -34,12 +35,8 @@ public class ScheduleController implements Controller
 
 		connector.saveMovie(movie);
 	}
-	public void confirm()
-	{
-
-	}
 	
-	public void OpenHomeScreen() {
+	public void OpenHomeScreen(){
 	
 	}
 }

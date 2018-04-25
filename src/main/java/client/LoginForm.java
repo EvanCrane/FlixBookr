@@ -73,7 +73,7 @@ public class LoginForm
                     return;
                 }
                 System.out.println("Attempting to log in using given credentials.");
-                //loginController.submit(txtUsername.getText(),pwdPassword.getText());
+                loginController.submit(txtUsername.getText(),pwdPassword.getText());
                 loginController.OpenHomeScreen();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 //OpenHomeScreen(event);

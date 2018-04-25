@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import main.java.ScheduleController;
 
 import java.awt.*;
 import java.io.File;
@@ -21,6 +22,7 @@ import java.util.regex.Pattern;
 
 public class ScheduleMovieForm
 {
+    private ScheduleController scheduleController;
     private Desktop desktop = Desktop.getDesktop();
     @FXML
     private TextField txtMovieTitle;
@@ -51,6 +53,7 @@ public class ScheduleMovieForm
     
     @FXML
     public void initialize() {
+        scheduleController = new ScheduleController();
         HandleScheduleMovie();
         HandleCancelChanges();
     }
@@ -210,6 +213,7 @@ public class ScheduleMovieForm
                 if (alert.getResult() == ButtonType.YES) {
                     alert.close();
                     //TODO SENDING INFO AND ERROR HANDLING
+                    //scheduleController.confirm();
                     OpenHomeScreen(event);
                 } else if (alert.getResult() == ButtonType.NO) {
                     alert.close();

@@ -15,12 +15,10 @@ import java.time.LocalDateTime;
 
 public class LoginController implements Controller {
 
-    private BCrypt crypt;
     private DBConnector connector;
 
     public LoginController() {
         connector = new DBConnector();
-        crypt = new BCrypt();
     }
 
     public void login(Stage stage) {
@@ -58,17 +56,19 @@ public class LoginController implements Controller {
      * Method to submit Username and check if credentials are solid
      * @param uName A Username
      * @param pWord User's plaintext password
-     * @return A Boolean array where 0 position is true if the passwords match 
+     * @return A Boolean array where 0 position is true if the passwords match
      * and 1 position is true if user is an admin;
      */
-    public Boolean[] submit(String uName, String pWord) {
+    public boolean[] submit(String uName, String pWord) {
 
-        Boolean[] userInfo = new Boolean[2];
+        boolean[] userInfo = new boolean[2];
         User user = connector.getUser(uName);
+        if(user.getuName() == null)
+            return userInfo;
         userInfo[0] = BCrypt.checkpw(pWord, user.getpWord());
 
         if (userInfo[0]) {
-            if(user.getPriv() == "admin")
+            if(user.getPriv())
                 userInfo[1] = true;
             saveLogin(user);
         }

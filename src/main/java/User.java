@@ -5,7 +5,8 @@ public class User
     //Instance Variables
     private String uName;
     private String pWord;
-    private String priv;
+    //true if admin
+    private boolean priv;
     
     //Properties
     ///uName
@@ -27,11 +28,11 @@ public class User
     }
 
     //Privilege
-    public String getPriv() {
+    public boolean getPriv() {
         return this.priv;
     }
 
-    public void setPriv(String priv) {
+    public void setPriv(boolean priv) {
         this.priv = priv;
     }
 }
