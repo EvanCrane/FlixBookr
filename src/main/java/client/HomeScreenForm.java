@@ -8,19 +8,17 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import main.FlixBookr;
 import main.java.LoginController;
 import main.java.TicketController;
@@ -39,8 +37,9 @@ public class HomeScreenForm
 
     //Temporary Image generator index
     private int tempIndex = 9;
-    
-    
+
+    @FXML
+    private AnchorPane rootAnchor;
     @FXML
     private Label welcomeName;
     @FXML
@@ -48,7 +47,11 @@ public class HomeScreenForm
     @FXML
     private Button btnLogout;
     @FXML
-    private AnchorPane scrollChildAnchor;
+    private ScrollPane scrollPane;
+    @FXML
+    private GridPane gridMovies;
+    @FXML
+    private StackPane scrollChildStack;
     @FXML
     private AnchorPane anchorRowA;
     @FXML
@@ -77,7 +80,7 @@ public class HomeScreenForm
         Image defaultImg = new Image("/images/defaultPoster.png");
         String defaultTitle = "Fightman ";
         double minAnchorHeight = 183.0;
-        double rowScaler = 0.0;
+        double rowScaler = 150.0;
         for (int i = 0; i < index; i++) {
             boolean newRow = false;
             newRow = i % 3 == 0;
@@ -136,7 +139,8 @@ public class HomeScreenForm
         }
         
         //Adjust the height of the scroll child anchor
-        scrollChildAnchor.setPrefHeight(minAnchorHeight);
+        scrollChildStack.setPrefHeight(minAnchorHeight);
+        gridMovies.prefWidthProperty().bind(rootAnchor.widthProperty());
         
         //Adding the Images to each 3 Anchors
         for (int i = 0; i < index; i++) {

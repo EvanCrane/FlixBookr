@@ -2,17 +2,11 @@ package main.java.client;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import main.java.TicketController;
-
-import java.io.IOException;
 
 public class ReserveTicketForm
 {
@@ -39,7 +33,8 @@ public class ReserveTicketForm
     @FXML
     public void initialize(TicketController ticketController, String mTitle) {
         this.controller = ticketController;
-        
+        HandleReserve();
+        HandleCancel();
     }
     //public ReserveTicketForm(TicketController controller) {
     //    this.controller = controller;
@@ -50,7 +45,7 @@ public class ReserveTicketForm
     }
     
     @FXML
-    private void HandleReserve(MouseEvent event) {
+    private void HandleReserve() {
         btnReserve.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>()
         {
             @Override
@@ -99,7 +94,7 @@ public class ReserveTicketForm
     }
     
     @FXML
-    private void HandleCancel(MouseEvent event) {
+    private void HandleCancel() {
         btnCancel.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>()
         {
             @Override

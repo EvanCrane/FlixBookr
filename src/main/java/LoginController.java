@@ -1,16 +1,16 @@
 package main.java;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import main.java.client.LoginForm;
 import main.org.mindrot.jbcrypt.BCrypt;
 import main.server.DBConnector;
-import main.java.client.LoginForm;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
 
 
 public class LoginController implements Controller {
@@ -28,7 +28,6 @@ public class LoginController implements Controller {
             // Load root layout from fxml file.
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("client/Login.fxml"));
             LoginForm loginForm = new LoginForm();
-            fxmlLoader.setController(loginForm);
             Parent root = fxmlLoader.load();
             loginForm = fxmlLoader.getController();
             loginForm.initialize(this);
@@ -66,7 +65,7 @@ public class LoginController implements Controller {
 
         Boolean[] userInfo = new Boolean[2];
         User user = connector.getUser(uName);
-        userInfo[0] = crypt.checkpw(pWord, user.getpWord());
+        userInfo[0] = BCrypt.checkpw(pWord, user.getpWord());
 
         if (userInfo[0]) {
             if(user.getPriv() == "admin")

@@ -51,7 +51,8 @@ public class ScheduleMovieForm
     
     @FXML
     public void initialize() {
-    
+        HandleScheduleMovie();
+        HandleCancelChanges();
     }
     
     @FXML
@@ -92,7 +93,7 @@ public class ScheduleMovieForm
     }
     
     @FXML
-    private void HandleScheduleMovie(MouseEvent event) {
+    private void HandleScheduleMovie() {
         btnScheduleMovie.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -218,7 +219,7 @@ public class ScheduleMovieForm
     }
     
     @FXML
-    private void HandleCancelChanges(MouseEvent event) {
+    private void HandleCancelChanges() {
         btnCancelChanges.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override

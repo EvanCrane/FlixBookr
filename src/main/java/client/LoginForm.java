@@ -3,17 +3,11 @@ package main.java.client;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import main.java.LoginController;
-
-import java.io.IOException;
 
 public class LoginForm
 {
@@ -33,6 +27,7 @@ public class LoginForm
     @FXML
     public void initialize(LoginController loginController) {
         this.loginController = loginController;
+        HandleLoginButton();
     
     }
     
@@ -55,7 +50,7 @@ public class LoginForm
     }
     
     @FXML
-    private void HandleLoginButton(MouseEvent event) {
+    private void HandleLoginButton() {
         //When login button is clicked
         btnLogin.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>()
         {
