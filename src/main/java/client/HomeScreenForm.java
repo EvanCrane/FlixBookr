@@ -24,6 +24,7 @@ import main.FlixBookr;
 import main.java.LoginController;
 import main.java.LogoutController;
 import main.java.TicketController;
+import main.java.ScheduleController;
 import main.java.HomeScreenController;
 import main.java.Movie;
 
@@ -38,7 +39,6 @@ public class HomeScreenForm
     private FlixBookr flixBookr;
     private BorderPane rootLayout;
 
-    private TicketController ticketController;
     private HomeScreenController homeScreenController;
     //Temporary Image generator index
     private int tempIndex = 9;
@@ -74,11 +74,10 @@ public class HomeScreenForm
     public void initialize() {
         //Make sure that the user logs in
         //Temp Session Name
-        ticketController = new TicketController();
         homeScreenController = new HomeScreenController();
         welcomeName.setText("Welcome Evan Crane");
         HashSet<Movie> movies = homeScreenController.getMovieList();
-        CreateImageViews(movies.size(),movies);
+        CreateImageViews(6,movies);
     }
     
     private void CreateImageViews(int index,HashSet<Movie> movies) {
@@ -182,7 +181,10 @@ public class HomeScreenForm
             @Override
             public void handle(MouseEvent event) {
                 System.out.println("Opening the Schedule Movie Form");
-                OpenScheduleMovie(event);
+                ScheduleController scheduleController = new ScheduleController();
+                scheduleController.scheduleMovie(new Stage());
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+                //OpenScheduleMovie(event);
             }
         });
     }

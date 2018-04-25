@@ -52,8 +52,8 @@ public class ScheduleMovieForm
     private Button btnCancelChanges;
     
     @FXML
-    public void initialize() {
-        scheduleController = new ScheduleController();
+    public void initialize(ScheduleController scheduleController) {
+        this.scheduleController = scheduleController;
         HandleScheduleMovie();
         HandleCancelChanges();
     }

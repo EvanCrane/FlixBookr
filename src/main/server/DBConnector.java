@@ -187,27 +187,7 @@ public class DBConnector {
             System.out.println("VendorError: " + except.getErrorCode());
         }
     }
-    /*
-    public void saveUser(User user) {
 
-        Connection connection = createConnection();
-        String query = "Insert into users( username,password, privilege) VALUES (?,?,?)";
-        try {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, user.getuName());
-            statement.setString(2,user.getpWord());
-            statement.setString(3,user.getPriv());
-            statement.executeUpdate();
-        }
-        catch(SQLException except) {
-            System.out.println("SQLException: " + except.getMessage());
-            System.out.println("SQLState: " + except.getSQLState());
-            System.out.println("VendorError: " + except.getErrorCode());
-        }
-
-        closeConnection(connection);
-    }
-    */
     /**
      * Method to save session events to the database
      * @param uName A username

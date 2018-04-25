@@ -96,12 +96,4 @@ public class Movie
         this.matPrice = matPrice;
     }
 
-    public boolean equals(Movie movie){
-        if (
-            this.title == movie.getTitle() &&
-            this.showTimes == movie.getShowTimes()
-        )  return true;
-        else
-            return false;
-    }
 }
