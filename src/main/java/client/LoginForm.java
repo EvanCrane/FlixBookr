@@ -1,4 +1,4 @@
-package main.client;
+package main.java.client;
 
 
 import javafx.event.EventHandler;
@@ -11,11 +11,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import main.java.LoginController;
 
 import java.io.IOException;
 
 public class LoginForm
 {
+    private LoginController loginController;
+
     @FXML
     private Label closeX;
     @FXML
@@ -24,15 +27,12 @@ public class LoginForm
     private PasswordField pwdPassword;
     @FXML
     private Button btnLogin;
-    
+
     //private FlixBookr flixBookr;
-    
-    public LoginForm() {
-    
-    }
-    
+
     @FXML
-    private void initialize() {
+    public void initialize(LoginController loginController) {
+        this.loginController = loginController;
     
     }
     
@@ -78,7 +78,10 @@ public class LoginForm
                     return;
                 }
                 System.out.println("Attempting to log in using given credentials.");
-                OpenHomeScreen(event);
+                //loginController.submit(txtUsername.getText(),pwdPassword.getText());
+                loginController.cancel();
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+                //OpenHomeScreen(event);
             }
         });
     }

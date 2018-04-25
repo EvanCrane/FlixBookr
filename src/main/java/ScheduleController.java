@@ -1,8 +1,7 @@
 package main.java;
 
 import java.time.LocalDateTime;
-import main.client.ScheduleMovieForm;
-import main.java.Movie;
+
 import main.server.DBConnector;
 
 //Schedule Movie Controller Class 

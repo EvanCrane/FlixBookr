@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #BFBFBF;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.ScheduleMovieForm">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #BFBFBF;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.client.ScheduleMovieForm">
     <children>
         <GridPane layoutX="12.0" layoutY="59.0" prefHeight="300.0" prefWidth="577.0" style="-fx-background-color: E8E8E8;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0">
             <columnConstraints>

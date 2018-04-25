@@ -4,9 +4,7 @@ package main.java;
 import java.time.LocalDateTime;
 
 import main.server.DBConnector;
-import main.client.ReserveTicketForm;
-import main.java.Reservation;
-import main.java.Movie;
+import main.java.client.ReserveTicketForm;
 
 public class TicketController implements Controller {
 
@@ -19,8 +17,8 @@ public class TicketController implements Controller {
     }
     
     public void ReserveTicket() {
-        resForm = new ReserveTicketForm(this);        
-        resForm.initialize();
+        //resForm = new ReserveTicketForm(this);
+        //resForm.initialize();
     }
 
     public Double select(Integer amount, LocalDateTime time, String movieTitle) {

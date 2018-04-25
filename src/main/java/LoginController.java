@@ -1,27 +1,58 @@
 package main.java;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.org.mindrot.jbcrypt.BCrypt;
 import main.server.DBConnector;
-import main.client.LoginForm;
-import main.java.User;
+import main.java.client.LoginForm;
 
 
 public class LoginController implements Controller {
 
     private BCrypt crypt;
     private DBConnector connector;
-    private LoginForm loginForm;
 
     public LoginController() {
         connector = new DBConnector();
-        loginForm = new LoginForm();
         crypt = new BCrypt();
     }
 
-    public void login() {
-        loginForm.initialize();
+    public void login(Stage stage) {
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("client/Login.fxml"));
+            LoginForm loginForm = new LoginForm();
+            fxmlLoader.setController(loginForm);
+            Parent root = fxmlLoader.load();
+            loginForm = fxmlLoader.getController();
+            loginForm.initialize(this);
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void cancel() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("client/HomeScreen.fxml"));
+            Parent root1 = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
