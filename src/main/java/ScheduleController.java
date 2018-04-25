@@ -1,36 +1,42 @@
-import main;
+package main.java;
+
 import java.time.LocalDateTime;
 import main.client.ScheduleMovieForm;
-import main.client.ConfirmWindow;
-import main.client.ErrorWindow;
 import main.java.Movie;
-import main.server; 
+import main.server.DBConnector;
 
 //Schedule Movie Controller Class 
 public class ScheduleController implements Controller 
 {
 	private DBConnector connector;
-	private ScheduleMovieForm movieForm;
-	private ConfirmWindow confirmWindow;
-	private ErrorWindow errorWindow;
-	
-	public Movie movie = new Movie();
+
 	
 	public ScheduleController()
 	{
 		connector = new DBConnector();
-		movieForm = new ScheduleMovieForm(this);
-		confirmWindow = new ConfirmWindow(this);
-		errorWindow = new ErrorWindow(this);
 	}
 	
-	public void scheduleNewMovie()
+	public void scheduleMovie(String title,
+							  String rate,
+							  LocalDateTime stT,
+							  LocalDateTime enT,
+							  LocalDateTime[] shT,
+							  String poster,
+							  String descr)
 	{
-		movieForm.initialize();
+		Movie movie = new Movie();
+		movie.setRating(rate);
+		movie.setTitle(title);
+		movie.setStartTime(stT);
+		movie.setEndTime(enT);
+		movie.setShowTime(shT);
+		movie.setPromoImage(poster);
+		movie.setDescription(descr);
+
+		connector.saveMovie(movie);
 	}
-	
 	public void confirm()
 	{
-		saveMovie(movie);
+
 	}
 }
